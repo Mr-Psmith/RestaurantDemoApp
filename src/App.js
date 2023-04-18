@@ -1,10 +1,11 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import Header from './components/Layout/header';
 
 function App() {
   return (
     <>
-        <h1>ReactMeals</h1>
+      <Header />
     </>
   );
 }
