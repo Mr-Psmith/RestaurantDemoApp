@@ -1,16 +1,25 @@
-import React from 'react';
-import './App.css';
-import Header from './components/Layout/header';
-import BodyMeals from './components/Meals/body-meals';
+import React from "react";
 
-function MealItemForm() {
+import Input from "../../UI/input";
+import classes from "./meal-item-form.module.css";
+
+function MealItemForm(props) {
   return (
     <>
-    <form className={classes.form}>
-        <label for="quantity" >Amount</label>
-        <input type="number" id="quantity" min="1" max="99" />
+      <form className={classes.form}>
+        <Input
+          labelProps="Amount"
+          inputProps={{
+            id: "amount_" + props.id, /* dont understand why this is unique */
+            type: "number",
+            min: "1",
+            max: "99",
+            step: "1",
+            defaulValue: "1",
+          }}
+        />
         <button>Add</button>
-    </form>
+      </form>
     </>
   );
 }
