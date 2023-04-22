@@ -1,7 +1,8 @@
+import { Fragment } from "react";
 import ReactDOM from "react-dom";
 import classes from "./Modal.module.css";
 
-const Backdrop = props => {
+const Backdrop = (props) => {
     return <div className={classes.backdrop}></div>;
 };
 
@@ -12,13 +13,14 @@ const ModalOverlay = props => {
 };
 
 const Modal = props => {
-    return 
-    <>
-        {ReactDOM.createPortal(<Backdrop />)}
-        {ReactDOM.createPortal(<ModalOverlay>{props.children}</ModalOverlay>)}
+    const portalElement= document.getElementById("overlays");
+
+    return <Fragment>
+        {ReactDOM.createPortal(<Backdrop />, portalElement)}
+        {ReactDOM.createPortal(<ModalOverlay>{props.children}</ModalOverlay>, portalElement)}
         {/* <Backdrop /> This if we would not use a portal. we use one to esuree the HTMP is nicer
         <ModalOverlay>{props.children}</ModalOverlay>    */}     
-    </>
+    </Fragment>
 };
 
 export default Modal;

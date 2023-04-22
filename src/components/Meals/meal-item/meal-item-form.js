@@ -15,7 +15,7 @@ function MealItemForm(props) {
             min: "1",
             max: "99",
             step: "1",
-            defaulValue: "1",
+            defaultValue: "1",
           }}
         />
         <button>Add</button>
