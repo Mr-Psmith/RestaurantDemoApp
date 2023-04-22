@@ -8,8 +8,14 @@ const Cart = (props) => {
   return (
     <div>
         {cartItems}
-        <div></div>
-        <div></div>
+        <div>
+          <span className={classes.total}>Total Amount</span>
+          <span>Calcualting.....</span>
+        </div>
+        <div className={classes.actions}>
+          <button className={classes["button--alt"]}>Close</button>
+          <button className={classes.button}>Order</button>
+        </div>
     </div>
   );
 };
