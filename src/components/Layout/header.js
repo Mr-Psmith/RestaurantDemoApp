@@ -6,13 +6,15 @@ import mealsImage from "../../assets/img/meals.jpg";
 
 const Header = (props) => {
 
-   
+    const cartHandler = (event) => {
+        cartHandlerPr(event);
+    };
 
     return(
         <>
             <header className={classes.header}>
                 <h1>ReactMeals</h1>
-                <CartButton />
+                <CartButton onClick={cartHandler} />
             </header> 
             <div className={classes["main-image"]}>
                 <img src={mealsImage} alt="sok kaja on the table" />
