@@ -7,21 +7,22 @@ import Cart from './components/Cart/Cart';
 
 function App() {
 
-  const [showModal, setShowModal] = useState("");
+  const [showModal, setShowModal] = useState(false); /* Not an empty string as I put it */
 
+  const openCartHandler = () => {
+    setShowModal(true);
+    console.log("WUTT");
+  };
   const closeCartHandler = () => {
-    setShowModal("");
+    setShowModal(false);
   };
-
-  const cartHandler = () => {
-    setShowModal(<Cart closeCartHandlerProp={closeCartHandler}/>);
-  };
+  
 
   return (
     <>
-      {showModal}
+      {showModal && <Cart closeCartHandlerPrToTheApp={closeCartHandler}  />}
       {/* <Cart closeCartHandlerProp={closeCartHandler} /> */}
-      <Header cartHandler={props.cartHandlerPr} />
+      <Header openModalHandlerPr={openCartHandler} />
       <main>
         <BodyMeals/>
       </main>

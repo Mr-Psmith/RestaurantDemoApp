@@ -5,9 +5,14 @@ import classes from "./header-cart-button.module.css";
 
 const CartButton = (props) => {
 
+    const openModalHandlerPr = () => {
+        /* props.openModalHandlerPr(event.target.value); */
+      };
+    
+
     return(
         <>
-            <div className={classes.button} >
+            <button className={classes.button} onClick={props.onClickPr} >
                 <span className={classes.icon} >
                     <CartIcon />
                 </span>
@@ -15,7 +20,7 @@ const CartButton = (props) => {
                 <span className={classes.badge} >
                     3{/* the total values, but needs a calculation yet */}
                 </span>
-            </div>    
+            </button>    
         </>
     );
 };
