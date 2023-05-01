@@ -5,11 +5,6 @@ import classes from "./header-cart-button.module.css";
 
 const CartButton = (props) => {
 
-    const openModalHandlerPr = () => {
-        /* props.openModalHandlerPr(event.target.value); */
-      };
-    
-
     return(
         <>
             <button className={classes.button} onClick={props.onClickPr} >
