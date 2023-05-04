@@ -1,9 +1,9 @@
-import React from 'react';
 import { useState } from 'react';
 import './App.css'; 
 import Header from './components/Layout/header';
 import BodyMeals from './components/Meals/body-meals';
 import Cart from './components/Cart/Cart';
+import CartProvider from './store/cart-provider';
 
 function App() {
 
@@ -19,13 +19,13 @@ function App() {
   
 
   return ( 
-    <>
+    <CartProvider>
       {showModal && <Cart closeCartHandlerPrToTheApp={closeCartHandler}  />}
       <Header openModalHandlerPr={openCartHandler} />
       <main>
         <BodyMeals/>
       </main>
-    </>
+    </CartProvider>
   );
 }
 
