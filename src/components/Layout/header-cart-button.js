@@ -5,8 +5,9 @@ import CartContext from "../../store/cart-context";
 import classes from "./header-cart-button.module.css";
 
 const CartButton = (props) => {
-    useContext(CartContext);
+    const cartCtx = useContext(CartContext); /* By using useContext here this comp will be evaluated every time the context changes, like when we update it ofc */
 
+    const numberOfCartItems = cartCtx.items.length;
 
     return(
         <>
