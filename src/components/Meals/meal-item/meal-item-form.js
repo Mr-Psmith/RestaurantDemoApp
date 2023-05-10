@@ -8,13 +8,15 @@ function MealItemForm(props) {
 
   const submitHandler = event => {
     event.preventDefault(); /* to make sure that the browser default page reloading is prevented */
+
+    const enteredAmount = amountInputRef.current.value;
   };
 
   return (
     <>
       <form className={classes.form} onSubmit={submitHandler}>
         <Input
-          ref={amountInputRef} /* as this is a custom comp, the ref prop doesnt work ut of the box, we are wrapping input.js comp with React.forwardRef */
+          ref={amountInputRef} /* as this is a custom comp, the ref prop doesnt work out of the box, we are wrapping input.js comp with React.forwardRef */
           labelProps="Amount"
           inputProps={{
             id: "amount_" + props.id, /* dont understand why this is unique */
