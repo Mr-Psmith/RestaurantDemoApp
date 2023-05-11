@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, {useRef, useState} from "react";
 
 import Input from "../../UI/input";
 import classes from "./meal-item-form.module.css";
@@ -6,10 +6,20 @@ import classes from "./meal-item-form.module.css";
 function MealItemForm(props) {
   const amountInputRef = useRef();
 
+  const [amountIsValid, setAmountIsValid] = useState(true);
+
   const submitHandler = event => {
     event.preventDefault(); /* to make sure that the browser default page reloading is prevented */
 
-    const enteredAmount = amountInputRef.current.value;
+    const enteredAmount = amountInputRef.current.value; /* It is always .current for refs created with useRef. "amountInputRef.current" part is pointing to the inpőut elemetn  */
+    const enteredAmountNumber = +enteredAmount; /* this will convert the string to a number. bec the .value abowe will always generate a string */
+
+    if (enteredAmount.trim().length === 0 || enteredAmountNumber < 1 || enteredAmountNumber > 5) {
+      setAmountIsValid(false);
+      return;
+    }
+
+    props.onAddToCartPr(enteredAmountNumber);
   };
 
   return (
@@ -28,6 +38,7 @@ function MealItemForm(props) {
           }}
         />
         <button>Add</button>
+        {!amountIsValid && <p>Please enter a Valid Amount (1-5)!</p>}
       </form>
     </>
   );

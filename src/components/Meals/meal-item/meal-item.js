@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import MealItemForm from './meal-item-form';
 import classes from "./meal-item.module.css";
+import CartContext from "../../../store/CartContext";
 
 function MealItem(props) {
+  const cartCtx = useContext(CartContext);
   const mrPrice = `$${props.price.toFixed(2)}`;/* Template litteral with two dollar sing one bec of the templatel., other bec of the dynamic value */
   /* this shit is for making sure that this has always two decimals. first time for everything */
+
+  const addToCartHandler  =amount => {
+    cartCtx.addItem({
+      id: props.id,
+      name: props.name,
+      amount: amount,
+      price: props.price
+    });
+  };
 
   return (
     <>
@@ -16,7 +27,7 @@ function MealItem(props) {
                 <div className={classes.price}>{mrPrice}</div>
             </div>
             <div>
-                <MealItemForm id={props.id} /* onAddToCart={addToCartHandler} */ />
+                <MealItemForm id={props.id} onAddtoCartPr={addToCartHandler} /* onAddToCart={addToCartHandler} */ />
             </div>
         </li>
     </>
