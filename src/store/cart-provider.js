@@ -7,7 +7,7 @@ const defaultCartState = {
 }; 
 
 const cartReducer = (state, action) => { /* we get the last state snapshot, and an action that we will "dispatch" "later in our code" */
-    if (action.type== "ADD") { 
+    if (action.type === "ADD") { 
         /* We want to group items for the same mela tgether, and manage the amount on a per meal basis*/
         const updatedItems = state.items.concat(action.item);/* state.items are the items in the current state snapshot, which we get as the first argument in the reducer *//* we simply expect to have all the date opn this item */
         const updatedTotalAmount = state.totalAmount + action.item.price * action.item.amount;
