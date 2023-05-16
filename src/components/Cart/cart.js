@@ -6,7 +6,9 @@ import CartContext from "../../store/cart-context";
 
 
 const Cart = (props) => {
-  const cartCtx = useContext(CartContext);
+  const cartCtx = useContext(CartContext); 
+
+  const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`; /* toFixed(2) is for to decimals, and the `$$...` shit is for the $ sign. ofc there is the question that wouldnt this be easier to just write ${} in the jsx instead of this backtick shit, but who I am to know */
 
   const cartItems = (
     <ul className={classes.cartItemscl}>
@@ -21,7 +23,7 @@ const Cart = (props) => {
     <Modal closeCartHandlerPr2={props.closeCartHandlerPrToTheApp}>
       {cartItems}
       <div className={classes.total}>
-        <span>Total Amount</span>
+        <span>{totalAmount}</span>
         <span>Calcualting.....</span>
       </div>
       <div className={classes.actions}>
