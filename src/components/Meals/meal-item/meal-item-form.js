@@ -4,9 +4,9 @@ import Input from "../../UI/input";
 import classes from "./meal-item-form.module.css";
 
 function MealItemForm(props) {
-  const amountInputRef = useRef();
-
   const [amountIsValid, setAmountIsValid] = useState(true);
+  const amountInputRef = useRef();
+ 
 
   const submitHandler = event => {
     event.preventDefault(); /* to make sure that the browser default page reloading is prevented */
