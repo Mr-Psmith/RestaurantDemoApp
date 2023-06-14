@@ -34,22 +34,25 @@ import classes from "./avaible-meals.module.css";
 
 function AvaibleMeals() {
 
+  function getMealsHandler () {
+    fetch("https://database-firebasedemo-default-rtdb.firebaseio.com/meals").than(meals => {
+      const mealsList = meals.map((meal) => ( /* We dont have to store in a const, it just nicer. But we could have just put it where the const is now in raw */
+        <MealItem
+          key={meal.id}
+          id={meal.id}
+          name={meal.name}
+          description={meal.description}
+          price={meal.price}
+        />
+      ));
+    })
+  };
   
-
-  const mealsList = DUMMY_MEALS.map((meal) => ( /* We dont have to store in a const, it just nicer. But we could have just put it where the const is now in raw */
-    <MealItem
-      key={meal.id}
-      id={meal.id}
-      name={meal.name}
-      description={meal.description}
-      price={meal.price}
-    />
-  ));
 
   return (
     <>
       <section className={classes.meals}>
-        <Card>
+        <Card onclickProps={getMealsHandler}>
           <ul>{mealsList}</ul>
         </Card>
       </section>
