@@ -20,7 +20,7 @@ function App() {
 
   return ( 
     <CartProvider>
-      {showModal && <Cart closeCartHandlerPrToTheApp={closeCartHandler}  />}
+      {showModal && <Cart onClose={closeCartHandler}  />}
       <Header openModalHandlerPr={openCartHandler} />
       <main>
         <BodyMeals/>

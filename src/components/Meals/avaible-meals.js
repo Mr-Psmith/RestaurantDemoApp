@@ -54,12 +54,19 @@ function AvaibleMeals() {
   // };
 
   const [meals,setMeals] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const {httpError, setHttpError} = useState();
 
 useEffect(() => {
   const fetchmeals = async () => {
+    setIsLoading(true);
     const response = await fetch ("https://database-firebasedemo-default-rtdb.firebaseio.com/meals.json");
+      
+    if (!response.ok) { /* again how the f.ck should I have known this before max showing it????? */
+      throw new Error("Something went wrong!"); /* we could look into what server throw at us, so we could make this more specific, but max wont tire homself of showing that to us*/
+    }
+
     const responseData = await response.json();
-  
     /* The firebase stores obj, but we need arrays, so we need to convert them  */
     const loadedMeals = [];
 
@@ -69,14 +76,34 @@ useEffect(() => {
         name: responseData[key].name,
         description: responseData[key].description,
         price: responseData[key].price,
-      })
+      });
     }
 
     setMeals(loadedMeals);
+    setIsLoading(false);
   };
 
-  fetchmeals();
+  /* so we try it, and if an error is thrown -as we throw it upper in the code- than we go into catch */
+    //Soooooo we cant add try catch to awayt-sync stuff directly, and thats what I understand ca., as max than solves it as solved below hopefuilly I dont have to understand it later Man I hope trading works out
+    //xept that it doesnt work for me, but I gave up
+    fetchmeals().catch((error) => {
+      setIsLoading(false);
+      setHttpError(error.message);
+    });
 }, []);
+
+if (isLoading) { 
+  return (<section className={classes.MealsLoading}>
+    <p>Loading....</p>
+  </section>
+  );
+} 
+if (httpError) {
+  return (<section className={classes.MealsError}>
+    <p>Error happened.</p>
+  </section>
+  );
+}
 
 const mealsList = meals.map((meal) => ( /* We dont have to store in a const, it just nicer. But we could have just put it where the const is now in raw */
         <MealItem
